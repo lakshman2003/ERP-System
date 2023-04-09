@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% csrf_token %}
+
+<head>
+    <title>Faculty Personal Home Page</title>
+    <link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}">
+</head> 
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    h1,h2,h3 {
+        text-align: center;
+        color: #5e90bc;
+        margin-top: 20px;
+    }
+         
+    
+    .courses_taught {
+        border-collapse: collapse;
+        width: 90%; 
+        margin: 40px auto;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    }
+        
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #44494d;
+        color: white;
+    }
+
+
+    .button-33 {
+      background-color: #c2fbd7;
+      border-radius: 100px;
+      box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+      color: green;
+      cursor: pointer;
+      display: inline-block;
+      font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+      padding: 7px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 250ms;
+      border: 0;
+      font-size: 16px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .button-33:hover {
+      box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+      transform: scale(1.05) rotate(-1deg);
+    }
+    /* Define some styles for the table rows */
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Faculty Personal Home Page</h3>
+        <h3>Name: {{faculty_info.faculty_name}}</h3>
+        <h3>Faculty ID: {{faculty_info.faculty_id}}</h3>
+        <h3>Username: {{faculty_info.username}}</h3>
+        <h3>Department: {{faculty_info.dept_name}}</h3>
+        <!-- <h3>Email: {{personal_info.student_email}}</h3>
+        <h3>Phone: {{personal_info.student_phone_no}}</h3> -->
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#courses_taught">Courses Taught</a></li>
+            <li><a href="{% url 'polls:view_departments' %}">Departments</a></li>
+            <li><a href="{% url 'polls:view_faculty_list' %}">Faculty</a></li>
+            <li><a href="{% url 'polls:view_courses' %}">Courses List</a></li>
+            <li class="logout"> <a href="{% url 'polls:faculty_logout' %}"> Logout </a></li>
+    </nav>
+
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to the faculty portal, {{faculty_info.faculty_name}} ! Here you can access your personal
+                information, courses taught by you, department list, faculty lists, and many more exciting updates 
+                and launches from the institute.</p>
+        </section>
+
+
+        <section id="courses_taught">
+            <h1>Courses taught by you</h1>
+            <table class="courses_taught">
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Department</th>
+                        <th>Credits</th>
+                        <th>View Students enrolled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in courses_taught%}
+                    <tr>
+                        <td>{{item.course_id}}</td>
+                        <td>{{item.course_name}}</td>
+                        <td>{{item.course_dept_name}}</td>
+                        <td>{{item.credits}}</td>
+                        <td> 
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input class="button-33" type="submit" name = 'course_id' value = {{item.course_id}}>
+                                <!-- <button class="button-33" id = 'course_id' type="submit" value={{item.course_id}}>View</button> -->
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</body>
+
+</html> 

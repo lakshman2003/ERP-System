@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Login | Student Login</title>
+    <link rel="stylesheet" href="{% static 'css/student_login.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Student Login</h1>
+        <form action= "" method="POST"> {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        
+        <!-- <a href="student_registration.html">
+            <button class="casual_button">Register</button>
+        </a> -->
+    
+    </div>
+</body>
+
+</html> 

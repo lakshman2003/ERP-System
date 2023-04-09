@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% csrf_token %}
+
+<head>
+    <title>Faculty list</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    h1 {
+        text-align: center;
+        color: #5e90bc;
+        margin-top: 40px;
+    }
+
+    .Faculty {
+        border-collapse: collapse;
+        width: 40%;
+        margin: 40px auto;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        column-gap: 0ch;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #5e90bc;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<body>
+    <h1>Faculty List</h1>
+    <table class="Faculty">
+        <thead>
+            <tr>
+                <th>Faculty ID</th>
+                <th>Faculty Name</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in faculty_list%}
+            <tr>
+                <td>{{item.faculty_id}}</td>
+                <td>{{item.faculty_name}}</td>
+                <td>{{item.dept_name}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>

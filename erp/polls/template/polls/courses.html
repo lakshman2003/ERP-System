@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% csrf_token %}
+
+<head>
+    <title>Courses list</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    h1 {
+        text-align: center;
+        color: #5e90bc;
+        margin-top: 40px;
+    }
+
+    .course {
+        border-collapse: collapse;
+        width: 60%;
+        margin: 40px auto;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        column-gap: 0ch;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #5e90bc;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<body>
+    <h1>Courses List</h1>
+    <table class="course">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Department</th>
+                <th>Faculty</th>
+                <th>Credits</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in courses_list%}
+            <tr>
+                <td>{{item.course_id}}</td>
+                <td>{{item.course_name}}</td>
+                <td>{{item.course_dept_name}}</td>
+                <td>{{item.course_faculty_name}}</td>
+                <td>{{item.credits}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>

@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+{% csrf_token %}
+<head>
+    <title>Student Personal Home Page</title>
+    <link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}"> 
+</head>
+
+<style>
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    h1,h2,h3 {
+        text-align: center;
+        color: #5e90bc;
+        margin-top: 20px;
+    }
+
+    /* Define some basic styles for the table */
+    
+    .courses_enrolled {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 40px auto;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #44494d;
+        color: white;
+    }
+
+    /* Define some styles for the table rows */
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+<body>
+    <header>
+        <h1>Student Personal Home Page</h1>
+        <h3>Name: {{personal_info.student_name}}</h3>
+        <h3>Student ID: {{personal_info.student_id}}</h3>
+        <h3>Department: {{personal_info.student_dept_name}}</h3>
+        <h3>Username: {{personal_info.username}}</h3>
+        <h3>Email: {{personal_info.student_email}}</h3>
+        <h3>Phone: {{personal_info.student_phone_no}}</h3>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#enrolled_courses">Courses Enrolled</a></li>
+            <li><a href="{% url 'polls:view_departments' %}">Departments</a></li>
+            <li><a href="{% url 'polls:view_faculty_list' %}">Faculty</a></li>
+            <li><a href="{% url 'polls:view_courses' %}">Courses List</a></li>
+            <li class = "logout"> <a href="{% url 'polls:logout' %}"> Logout </a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <p>Welcome to your student portal, {{personal_info.student_name}} ! Here you can access your personal information, courses
+                enrolled, department list, faculty lists, and many more exciting updates
+                and launches from the institute.</p>
+        </section>
+
+        
+        <section id="enrolled_courses">
+            <h1>Enrolled Courses</h1>
+            <table class="courses_enrolled">
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Course Name</th>
+                        <th>Faculty ID</th>
+                        <th>Faculty Name</th>
+                        <th>Department</th>
+                        <th>Credits</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in courses_enrolled%}
+                    <tr>
+                        <td>{{item.course_id}}</td>
+                        <td>{{item.course_name}}</td> 
+                        <td>{{item.course_faculty_id}}</td>
+                        <td>{{item.course_faculty_name}}</td>
+                        <td>{{item.course_dept_name}}</td>
+                        <td>{{item.credits}}</td>
+                        <td>{{item.grade}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        
+    </main>
+
+    <!-- <script>
+        history.pushState(null, null, null);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, null);
+        });
+    </script> -->
+</body>
+
+</html>
