@@ -1,0 +1,17 @@
+{
+    "builds": [
+        {
+            "src": "erp/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "runtime": "python3.9"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "erp/wsgi.py"
+        }
+    ]
+}

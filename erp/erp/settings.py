@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-r*s!3c%ns#uset3bsf_!w6p&&_fvotfncqvzxt1%@ezjxd%i)+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #'django_seed',
-
+    #'polls',
 ]
 FAKER_LOCALE = None     
 FAKER_PROVIDERS = None
