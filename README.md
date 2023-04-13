@@ -42,7 +42,7 @@ password - 'adrijit123'
 
 You can access the admin page at **http://127.0.0.1:8000/admin** or by clicking on **Login as Admin** on the homepage of the project 
 
-The login credentials for the admin of are provided in the report submitted.
+The login credentials for the admin are provided in the report submitted.
 
 Also a new admin user can be created using
 
