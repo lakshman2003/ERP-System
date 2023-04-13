@@ -4,6 +4,7 @@
 {% csrf_token %}
 <head>
     <title>Student Personal Home Page</title>
+    
     <link rel="stylesheet" href="{% static 'css/studenthomepage.css' %}"> 
 </head>
 
@@ -53,6 +54,7 @@
         background-color: #ddd;
     }
 </style>
+
 <body>
     <header>
         <h1>Student Personal Home Page</h1>
@@ -63,7 +65,15 @@
         <h3>Email: {{personal_info.student_email}}</h3>
         <h3>Phone: {{personal_info.student_phone_no}}</h3>
     </header>
+    <script>
+        function logout_from_the_page() {
+            function preventBack() { window.history.forward(); }
+            setTimeout("preventBack()", 0);
+            window.onunload = function () { null };
+            preventBack();
+        }
 
+    </script>
     <nav>
         <ul>
             <li><a href="#dashboard">Dashboard</a></li>

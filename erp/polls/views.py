@@ -57,7 +57,7 @@ class faculty_info():
 def index(request):
     return render(request, 'polls/homepage.html',{'title':"homepage"})
 
-can_login = False
+can_student_login = False
 can_faculty_login = False
 
 
@@ -76,8 +76,8 @@ def student_login(request):
         user_credential = student.objects.get(username = username)
         if user_credential.password == password:
            #print("Test0")
-           global can_login
-           can_login = True
+           global can_student_login
+           can_student_login = True
 
            return redirect('polls:student_homepage', user_id = username,#kwargs= {{'can_login':True}}
            )
@@ -138,9 +138,9 @@ def faculty_login(request):
 @cache_control(no_cache=True, must_revalidate=True)
 # @login_required(login_url='homepage.html')
 def student_homepage(request, user_id):
-    global can_login
-    print(can_login)
-    if can_login == False:
+    global can_student_login
+    print(can_student_login)
+    if can_student_login == False:
       return render(request, 'polls/homepage.html', {'title': "homepage"})
     
     student_credentials = student.objects.get(username=user_id)
@@ -256,10 +256,10 @@ def view_faculty_list(request):
 
 @cache_control(no_cache=True, must_revalidate=True)
 def logout(request):
-    global can_login 
-    can_login = False
+    global can_student_login 
+    can_student_login = False
     # print("Logout function accessed")
-    # print(can_login)
+    # print(can_student_login)
     request.session.flush()
     try:
         del request.session['user_id']
