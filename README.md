@@ -13,18 +13,20 @@ pip install django
 ```
 
 ## Usage
+- create a folder where you want to save this project in your computer.  
+- open command prompt and change the directory to this folder using the
+command prompt by ' cd ./(the path file of your folder) '. Make sure that
+your folder is saved in the original directory of your command prompt.
 
-Go to the erp folder and activate the virtual environment by pressing ctrl+Shift+~
+  ```bash
+   python manage.py runserver
+   ```
 
-```bash
-python manage.py runserver
-```
-
- Make sure that the above command is run in the folder where manage.py file is present 
+-  Make sure that the above command is run with the folder where manage.py file is present as working directory.
  
-The url will be provided in your command prompt. Type the url into your web browser to access and open the project.
+- The url will be provided in your command prompt. Type the url into your web browser to access and open the project.
 
-Generally, the url provided is  **http://127.0.0.1:8000/**
+- Generally, the url provided is  **http://127.0.0.1:8000/**
 
 ## Login
 
