@@ -1,8 +1,10 @@
 It is a college management system built using Django framework. It is designed for interactions between students and teachers. Features include courses, grades, etc.
 
-The website is hosted live at **http://lakshmankattunga.pythonanywhere.com/**
+The project is hosted live at **http://lakshmankattunga.pythonanywhere.com/**
 
 The procedure to run the project on local machine is as follows: 
+
+Its recommended to use Mozilla Browser to view the project either through the hosted link given above or using local server.
 
 ## Installation
 
